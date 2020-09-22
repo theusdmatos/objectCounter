@@ -15,17 +15,17 @@ erosion = cv2.erode(denoising, kernel, iterations = 1)
 #Buracos finos ou pequenos serão eliminados, unindo os objetos, a imagem original é “engordada”
 dilation = cv2.dilate(erosion, kernel, iterations = 1)
 
-#convertendo a imagem para tons de cinza
+#Convertendo a imagem para tons de cinza
 gray = cv2.cvtColor(dilation, cv2.COLOR_BGR2GRAY)
 cv2.imshow("Cinza", gray)
 cv2.waitKey(0)
 
-#aplicando a detecção de bordas na imagem
+#Aplicando a detecção de bordas na imagem
 edged = cv2.Canny(gray, 30, 150)
 
 cv2.imshow("Bordas", edged)
 cv2.waitKey(0)
-#encontrando os contornos usando as bordas que foram encontradas
+#Encontrando os contornos usando as bordas que foram encontradas
 cnts = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 cnts = imutils.grab_contours(cnts)
 output = img.copy()
